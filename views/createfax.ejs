@@ -1,0 +1,49 @@
+<%- include('./partials/navabar') %>
+    <div class="container my-5 d-flex justify-content-center">
+        <div class="card px-3 shadow-lg  text-success w-50">
+            <form action="/createnewfax" method="POST" class="my-5 was-validated" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="numberoffax" class="form-label">رقم المكاتبه</label>
+                    <input type="text" class="form-control" required id="numberoffax" name="numberOfFax" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="from" class="form-label">الجهه الواردة</label>
+                    <input type="text" class="form-control" required id="from" name="from" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="branch" class="form-label">الفرع المختص</label>
+                    <input type="text" class="form-control" required id="branch" name="branch" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="from" class="form-label">الموضوع</label>
+                    <textarea type="text" class="form-control" required id="from" name="subject" /></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="signature" class="form-label">تأشيرة السيد / رئيس الجهاز</label>
+                    <select class="form-select" aria-label="Default select example" name="signature">
+                    <option selected value="0">مش انا ال هأشر</option>
+                    <option value="1">إعاده عرض</option>
+                    <option value="2">عرض شخصي</option>
+                    <option value="3">تصحيح ومراجعه</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="reply" class="form-label">تمام الرد</label>
+                    <input type="file" class="form-control" id="reply" name="reply" />
+                </div>
+                <div class="mb-3">
+                    <label for="fax" class="form-label">ملف المكاتبة</label>
+                    <input type="file" class="form-control" id="fax" required name="faxContent" />
+                </div>
+                <button type="submit" class="btn btn-primary">إضافه</button>
+        </div>
+        </form>
+    </div>
+    </div>
+
+    <%- include('./partials/footer') %>

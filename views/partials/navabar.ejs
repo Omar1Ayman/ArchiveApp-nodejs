@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="/css/tab.css" />
+    <link rel="stylesheet" href="/bootstrap-icons-1.10.3/bootstrap-icons.css" />
+</head>
+
+<body style="direction: rtl;" class="d-flex flex-column min-vh-100">
+    <nav class="sticky-top navbar  navbar-expand-lg navbar-dark bg-dark shadow">
+        <div class="container-fluid">
+            <a href="/">
+                <img src="/images/sat3-logo.png" alt="" width="90" height="90" class="d-inline-block align-text-top" />
+            </a>
+            <a class="navbar-brand" href="#">دفتر المكاتبات الواردة</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="d-flex me-auto" role="search">
+                    <% if (user) { %>
+                        <a class="btn btn-primary mx-2" href="/">الصفحة الرئيسية</i></a>
+                        <% if (user.role === "user") { %>
+                            <a class="btn btn-primary mx-2" href="/createfax">إضافة مكاتبة</i></a>
+                        <% } %>
+                        <a class="btn btn-primary mx-2" href="/getallfaxes">جميع المكاتبات</i></a>
+                        </a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </nav>

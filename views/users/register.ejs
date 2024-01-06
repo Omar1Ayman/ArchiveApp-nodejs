@@ -1,0 +1,34 @@
+<%- include('../partials/navabar') %>
+
+
+    <div class="container text-center">
+        
+        <div class="col-4 position-absolute top-50 start-50 translate-middle border-rounded shadow  p-5">
+            <% for( let index = 0; index < massages.length; index++ ) { %>
+                <div class="alert alert-danger fade show">
+                    <strong ><%= massages[index] %></strong>
+                    <button class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <% } %>
+            <div class="mb-5">
+                <h1 class="text-center"> إنشاء تسجيل الدخول</h1>
+            </div>
+            <form action="/signup" method="post" class="was-validated">
+                <div>
+                    <div class="form-floating mb-3">
+                        <input required type="text"  class="form-control border shadow" id="floatingInput" name="name" placeholder="أدخل أسم المستخدم" />
+                        <label for="floatingInput">تسجيل دخول فرع</label>
+                    </div>
+                    <div class="form-floating mb-5">
+                        <input  type="password" required class="form-control border shadow" id="floatingPassword" name="password" placeholder="Password" />
+                        <label for="floatingPassword">كلمة المرور</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="col-lg-4 btn btn-primary py-2">
+            تسجيل دخول
+          </button>
+            </form>
+        </div>
+    </div>
+    <%- include('../partials/footer') %>

@@ -1,0 +1,115 @@
+<%- include('./partials/navabar') %>
+<div class="container-fluid shadow mt-2 mb-5">
+  <div class="container card py-3 shadow-lg">
+    <h3 class="text-center border-bottom mb-3 pb-3">وارد عن يوم <%= date %></h3>
+    <span
+      id="filter"
+      class="border p-2 rounded bi bi-sort-down mb-1"
+      style="width: fit-content; cursor: pointer"
+      >فلتر</span
+    >
+    <div class="w-100" id="searchallfaxs" style="display: none">
+      <div class="search my-2 d-flex form-control align-items-center mx-2">
+        <i class="bi bi-search text-muted"></i>
+        <input
+          style="border: none; outline: none"
+          type="text"
+          class="w-100 mx-2"
+          id="myInput"
+          onkeyup="myFunction()"
+          placeholder="بحث برقم المكاتبه"
+          title="بحث برقم المكاتبه"
+        />
+      </div>
+      <div class="search my-2 d-flex form-control align-items-center mx-2">
+        <i class="bi bi-search text-muted"></i>
+        <input
+          style="border: none; outline: none"
+          type="text"
+          class="w-100 mx-2"
+          id="myInput2"
+          onkeyup="myFunction2()"
+          placeholder="بحث بالجهة الواردة"
+          title="بحث بالجهة الواردة"
+        />
+      </div>
+      <div class="search my-2 d-flex form-control align-items-center mx-2">
+        <i class="bi bi-search text-muted"></i>
+        <input
+          style="border: none; outline: none"
+          type="text"
+          class="w-100 mx-2"
+          id="myInput3"
+          onkeyup="myFunction3()"
+          placeholder="بحث بالفرع المختص"
+          title="بحث بالفرع المختص"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="mt-2">
+    <table class="table mt-5 text-center" id="myTable">
+      <thead class="text-center bg-dark text-white">
+        <tr>
+          <th>رقم المكاتبة</th>
+          <th>الجهة الواردة</th>
+          <th>الفرع المختص</th>
+          <th>الموضوع</th>
+          <th>تأشيرة السيد / رئيس الجهاز</th>
+          <th>تمام الرد</th>
+          <th>الوقت والتاريخ</th>
+          <th>إعدادات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% getfaxs.forEach(fax => { %>
+        <tr>
+          <td><%= fax.numberOfFax %></td>
+          <td><%= fax.from %></td>
+          <td><%= fax.branch %></td>
+          <td><%= fax.subject %></td>
+          <td>
+            <% if (fax.signature === "0") { %> <%= "لم يتم التأشير" %> <% } %>
+            <% if (fax.signature === "1") { %> <%= "إعاده عرض" %> <% } %> <% if
+            (fax.signature === "2") { %> <%= "عرض شخصي" %> <% } %> <% if
+            (fax.signature === "3") { %> <%= "تصحيح ومراجعه" %> <% } %>
+          </td>
+          <td>
+            <% if (!fax.reply === "notreply.pdf") { %> تم الرد <% } else{ %> لم
+            يتم الرد <% } %>
+          </td>
+          <td>
+            <%= moment(fax.createdAt).format('h:mm:ss / DD-MM-yy') %>
+            <br />
+          </td>
+          <% if (user) { %> <% if (user.role === "admin") { %>
+          <td class="d-flex justify-content-center">
+            <a href="/showfax/<%=fax._id%>" class="btn btn-primary mx-3"
+              >عرض <%= user.name %></a
+            >
+          </td>
+          <% } %> <% if (user.role === "user") { %>
+          <td class="d-flex justify-content-center">
+            <a href="editfax/<%=fax._id%>" class="btn btn-primary mx-3"
+              >تعديل</a
+            >
+            <form
+              action="/deletefax/<%= fax._id %>?_method=delete"
+              method="POST"
+            >
+              <button class="btn btn-danger">حذف</button>
+            </form>
+            <a href="/showfax/<%=fax._id%>" class="btn btn-primary mx-3"
+              >عرض <%= user.name %></a
+            >
+          </td>
+          <% } %> <% } %>
+        </tr>
+
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

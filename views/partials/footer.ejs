@@ -1,0 +1,166 @@
+<footer class="py-1 mt-auto text-center bg-dark">
+    <div class="container">
+        <span class="text-muted">تم التنفيذ بواسطة فرع نظم المعلومات جهاز الإستطلاع</span>
+    </div>
+</footer>
+
+<script src="../../js/jquery.js"></script>
+<script>
+    var table = document.getElementById("myTable")
+    var tbody = table.children[1];
+
+    $(document).ready(function() {
+        //get allfaxes in specified date
+        $("#date-search").on('submit', function(e) {
+            e.preventDefault();
+            var from = $("#from").val()
+            var to = $("#to").val()
+            let date = new Date();
+
+            console.log("from , to", from, to);
+
+            if (from && to) {
+                $.ajax({
+                    type: "GET",
+                    url: `/getallfaxes/${from}/${to}`,
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(table)
+                        console.log(tbody)
+                        console.log(data)
+                        tbody.innerHTML = ""
+                        data.forEach(d => {
+                            tbody.innerHTML += `
+                        <tr>
+                            <td>
+                                ${d.numberOfFax}
+                            </td>
+                            <td>
+                                ${d.from}
+                            </td>
+                            <td>
+                                ${d.branch}
+                            </td>
+                            <td>
+                                ${d.subject}
+                            </td>
+                            <td>
+                                ${d.signature}
+                            </td>
+                            <td>
+                                ${d.reply}
+                            </td>
+                            <td>
+                                ${d.createdAt.toString().split("T")[0]}
+                                    <br>
+                            </td>
+                            <td class="d-flex justify-content-center">
+                                <a href="editfax/${d._id}" class="btn btn-primary mx-3">تعديل</a>
+                                <form action="/deletefax/${d._id }?_method=delete" method="POST">
+                                    <button class="btn btn-danger">حذف</button>
+                                </form>
+                            </td>
+
+                        </tr>
+                        `
+                        });
+                    },
+                });
+            } else {
+                alert("الف سلامه ☺")
+            }
+        });
+
+        // toglle filter button
+        $("#filter").click(function() {
+            if ($(this).hasClass("bi-sort-down")) {
+                $("#searchallfaxs").slideDown("slow");
+                $(this).addClass("bi-sort-up")
+                $(this).removeClass("bi-sort-down")
+
+            } else {
+                $("#searchallfaxs").slideUp("slow");
+                $(this).addClass("bi-sort-down")
+                $(this).removeClass("bi-sort-up")
+
+            }
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+    })
+
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function myFunction2() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput2");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function myFunction3() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput3");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>

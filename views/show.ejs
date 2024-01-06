@@ -1,0 +1,77 @@
+<%- include('./partials/navabar') %>
+
+    <div class="container-fluid shadow mt-3">
+
+        <div class="mt-2 ">
+            <table class="table mt-2 text-center " id="myTable">
+                <thead class="text-center bg-dark text-white">
+                    <tr>
+                        <th>رقم المكاتبة</th>
+                        <th>الجهة الواردة</th>
+                        <th>الفرع المختص</th>
+                        <th>الموضوع</th>
+                        <th>تأشيرة السيد / رئيس الجهاز</th>
+                        <th> الوقت والتاريخ</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    <tr>
+                        <td>
+                            <%= fax.numberOfFax %>
+                        </td>
+                        <td>
+                            <%= fax.from %>
+                        </td>
+                        <td>
+                            <%= fax.branch %>
+                        </td>
+                        <td>
+                            <%= fax.subject %>
+                        </td>
+                        <td>
+                            <% if (fax.signature === "0") { %>
+                                <%= "لم يتم التأشير" %>
+                                    <% } %>
+                                        <% if (fax.signature === "1") { %>
+                                            <%= "إعاده عرض" %>
+                                                <% } %>
+
+                                                    <% if (fax.signature === "2") { %>
+                                                        <%= "عرض شخصي" %>
+                                                            <% } %>
+
+                                                                <% if (fax.signature === "3") { %>
+                                                                    <%= "تصحيح ومراجعه" %>
+                                                                        <% } %>
+
+                        </td>
+                        <td>
+                            <%= moment(fax.createdAt).format('h:mm:ss / DD-MM-yy') %>
+                                <br>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <div class="col-6 my-5">
+                <h3 class="py-2 text-center">المكاتبه</h3>
+                <div class="card">
+                    <iframe src="/uploads/faxContent/<%= fax.faxContent%>" style=" height: 100vh;"></iframe>
+                </div>
+            </div>
+            <div class="col-6 my-5">
+                <h3 class="py-2 text-center">الرد على المكاتبه</h3>
+                <div class="card">
+                    <iframe src="/uploads/reply/<%= fax.reply%>" style=" height: 100vh;"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <%- include('./partials/footer') %>

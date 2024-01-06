@@ -1,0 +1,49 @@
+@font-face {
+    font-family: PTBLDHAD;
+    src: url(../fonts/PTBLDHAD.TTF);
+}
+
+@font-face {
+    font-family: cairo;
+    src: url(../fonts/Cairo/static/Cairo-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: cairoRegular;
+    src: url(../fonts/Cairo/static/Cairo-Regular.ttf);
+}
+
+@font-face {
+    font-family: PTBLDHAD;
+    src: url(../fonts/Cairo/static/Cairo-ExtraLight.ttf);
+}
+
+body {
+    /* font-family: PTBLDHAD, 'Cairo', sans-serif; */
+    font-family: cairo;
+    /* background: rgb(162, 53, 53); */
+    /* background: linear-gradient(90deg, rgba(254, 122, 152, 0.81) 12%, rgba(255, 206, 134, 1) 47%, rgba(172, 253, 163, 0.64) 100%); */
+}
+
+
+/* #mytable{
+    font-family: cairo;
+} */
+
+.hidden {
+    display: none;
+}
+
+.form-select {
+    padding: 0.8rem 3rem 0.8rem .5rem;
+}
+
+h1 {
+    font-weight: 100;
+    /* font-family: PTBLDHAD; */
+}
+
+
+/* #mytitle {
+    font-family: PTBLDHAD;
+} */

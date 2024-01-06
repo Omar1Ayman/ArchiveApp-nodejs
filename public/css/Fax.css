@@ -1,0 +1,45 @@
+section .section-title {
+    text-align: center;
+    color: #007b5e;
+    text-transform: uppercase;
+}
+
+#tabs {
+    background: #04c094;
+    color: #eee;
+}
+
+#tabs h6.section-title {
+    color: #eee;
+}
+
+#tabs .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: #f3f3f3;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 4px solid !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#tabs .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #eee;
+    font-size: 20px;
+}
+
+body {
+    background: rgb(162, 53, 53);
+    background: linear-gradient(90deg, rgba(192, 254, 122, 0.81) 12%, rgb(247, 255, 134) 47%, rgba(239, 253, 163, 0.64) 100%);
+}
+
+.hidden {
+    display: none;
+}
+
+.form-select {
+    padding-right: 2rem;
+}

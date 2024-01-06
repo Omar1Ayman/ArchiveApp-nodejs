@@ -1,0 +1,59 @@
+<%- include('./partials/navabar') %>
+    <div class="container my-5 d-flex justify-content-center">
+        <div class="card px-3 shadow-lg  text-success w-50">
+            <form action="/editfax/<%= fax._id %>?_method=PUT" method="POST" method="POST" class="my-5 was-validated" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="numberoffax" class="form-label">رقم المكاتبه</label>
+                    <input type="text" class="form-control" id="numberoffax" required name="numberOfFax" value="<%= fax.numberOfFax %>" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="from" class="form-label">الجهه الواردة</label>
+                    <input type="text" class="form-control" id="from" required name="from" value="<%= fax.from %>" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="branch" class="form-label">الفرع المختص</label>
+                    <input type="text" class="form-control" id="branch" required name="branch" value="<%= fax.branch %>" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="from" class="form-label">الموضوع</label>
+                    <textarea type="text" class="form-control" id="from" required name="subject" />
+                    <%= fax.subject %>
+                        </textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="signature" class="form-label">تأشيرة السيد / رئيس الجهاز</label>
+                    <select class="form-select" aria-label="Default select example" name="signature">
+                    <option selected value="0" <% if (fax.signature === "0") { %>
+                     <%= "selected" %>
+                    <% } %>>مش انا ال هأشر</option>
+                    <option value="1" <% if (fax.signature === "1") { %>
+                     <%= "selected" %>
+                    <% } %> >إعاده عرض</option>
+                    <option value="2" <% if (fax.signature === "2") { %>
+                     <%= "selected" %>
+                    <% } %>>عرض شخصي</option>
+                    <option value="3" <% if (fax.signature === "3") { %>
+                     <%= "selected" %>
+                    <% } %>>تصحيح ومراجعه</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="reply" class="form-label">تمام الرد</label>
+                    <input type="file" class="form-control" id="reply" name="reply" value="<%= fax.reply %>" />
+                </div>
+                <div class="mb-3">
+                    <label for="fax" class="form-label">ملف المكاتبة</label>
+                    <input type="file" class="form-control" id="fax" required required name="faxContent" value="<%= fax.faxContent %>" />
+                </div>
+                <button type="submit" class="btn btn-primary">إضافه</button>
+        </div>
+        </form>
+    </div>
+    </div>
+
+    <%- include('./partials/footer') %>
